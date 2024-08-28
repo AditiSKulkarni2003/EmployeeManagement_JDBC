@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class EmployeeDao {
 
     private static final String URL = "jdbc:mysql://localhost:3307/EmployeeDetails";
-    private static final String USER = "root"; // Update with your MySQL username
-    private static final String PASSWORD = "root"; // Update with your MySQL password
+    private static final String USER = "root";
+    private static final String PASSWORD = "root";
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -59,7 +59,7 @@ public class EmployeeDao {
             }
         }
 
-        scanner.close(); // Close the scanner when exiting the program
+        scanner.close();
     }
 
     private void createEmployee() {
@@ -105,7 +105,7 @@ public class EmployeeDao {
                 pstmt.setString(8, empType);
                 pstmt.executeUpdate();
 
-                // Retrieve the generated employee ID if needed
+
                 if (empId == null) {
                     try (ResultSet rs = pstmt.getGeneratedKeys()) {
                         if (rs.next()) {
@@ -115,7 +115,7 @@ public class EmployeeDao {
                 }
             }
 
-            // Insert into specific employee type table
+
             String insertSpecificSQL;
             if ("AssociateConsultantDelivery".equalsIgnoreCase(empType)) {
                 System.out.print("Enter Skill Set (comma separated): ");
@@ -226,7 +226,7 @@ public class EmployeeDao {
                         System.out.println("Dass ID: " + rs.getString("dass_id"));
                         System.out.println("Employee Type: " + rs.getString("emp_type"));
 
-                        // Fetch type-specific information based on employee type
+
                         String empType = rs.getString("emp_type");
                         if ("AssociateConsultantDelivery".equalsIgnoreCase(empType)) {
                             System.out.println("Skill Set: " + rs.getString("skill_set"));
